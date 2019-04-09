@@ -1,0 +1,125 @@
+{
+  "keras_model_zoo" :
+    {
+      "Xception":
+        {
+          "pkg" : "keras.applications.xception",
+          "image_size" : "(299, 299, 3)",
+          "data_format" : "channels_last"
+        },
+      "VGG16" :
+          {
+            "pkg" : "keras.applications.vgg16",
+            "image_size" : "(224, 224, 3)",
+            "data_format" : "channels_last"
+          },
+      "VGG19" :
+          {
+            "pkg" : "keras.applications.vgg19",
+            "image_size" : "(224, 224, 3)",
+            "data_format" : "channels_last"
+          },
+      "ResNet50" :
+          {
+            "pkg" : "keras.applications.resnet",
+            "image_size" : "(224, 224, 3)",
+            "data_format" : "channels_last"
+          },
+      "ResNet101" :
+          {
+            "pkg" : "keras.applications.resnet",
+            "image_size" : "(224, 224, 3)",
+            "data_format" : "channels_last"
+          },
+      "ResNet152" :
+          {
+            "pkg" : "keras.applications.resnet",
+            "image_size" : "(224, 224, 3)",
+            "data_format" : "channels_last"
+          },
+      "ResNet50V2" :
+          {
+            "pkg" : "keras.applications.resnet_v2",
+            "image_size" : "(224, 224, 3)",
+            "data_format" : "channels_last"
+          },
+      "ResNet101V2" :
+          {
+            "pkg" : "keras.applications.resnet_v2",
+            "image_size" : "(224, 224, 3)",
+            "data_format" : "channels_last"
+          },
+      "ResNet152V2" :
+          {
+            "pkg" : "keras.applications.resnet_v2",
+            "image_size" : "(224, 224, 3)",
+            "data_format" : "channels_last"
+          },
+      "ResNeXt50" :
+          {
+            "pkg" : "keras.applications.resnext",
+            "image_size" : "(224, 224, 3)",
+            "data_format" : "channels_last"
+          },
+      "ResNeXt101" :
+          {
+            "pkg" : "keras.applications.resnext",
+            "image_size" : "(224, 224, 3)",
+            "data_format" : "channels_last"
+          },
+      "InceptionV3" :
+          {
+            "pkg" : "keras.applications.inception_v3",
+            "image_size" : "(299, 299, 3)",
+            "data_format" : "channels_last"
+          },
+      "InceptionResNetV2" :
+          {
+            "pkg" : "keras.applications.inception_resnet_v2",
+            "image_size" : "(299, 299, 3)",
+            "data_format" : "channels_last"
+          },
+      "MobileNet" :
+          {
+            "pkg" : "keras.applications.mobilenet",
+            "image_size" : "(224, 224, 3)",
+            "data_format" : "channels_last"
+          },
+      "MobileNetV2" :
+          {
+            "pkg":"keras.applications.mobilenet_v2",
+            "image_size" : "(224, 224, 3)",
+            "data_format" : "channels_last"
+          },
+      "DenseNet121" :
+          {
+            "pkg" : "keras.applications.densenet",
+            "image_size" : "(224, 224, 3)",
+            "data_format" : "channels_last"
+          },
+      "DenseNet169" :
+          {
+            "pkg" : "keras.applications.densenet",
+            "image_size" : "(224, 224, 3)",
+            "data_format" : "channels_last"
+          },
+      "DenseNet201" :
+          {
+            "pkg" : "keras.applications.densenet",
+            "image_size" : "(224, 224, 3)",
+            "data_format" : "channels_last"
+          },
+      "NASNetLarge" :
+          {
+            "pkg" : "keras.applications.nasnet",
+            "image_size" : "(331, 331, 3)",
+            "data_format" : "channels_last"
+          },
+      "NASNetMobile" :
+          {
+            "pkg" : "keras.applications.nasnet",
+            "image_size" : "(224, 224, 3)",
+            "data_format" : "channels_last"
+          }
+    }
+}
