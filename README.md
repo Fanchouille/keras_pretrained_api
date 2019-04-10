@@ -1,4 +1,4 @@
-# Generic API
+# Keras pretrained API
 
 This a dockerized API to expose a scikit model with fastAPI.
 
