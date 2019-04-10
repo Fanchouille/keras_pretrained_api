@@ -10,9 +10,11 @@ Based on https://github.com/tiangolo/uvicorn-gunicorn-docker
 
 /app/app/main.py 
 
-### *Pickled model is in 'app/model' folder*
+### *Model zoo is in 'app/model' folder*
 
-/app/model/your_model.pkl
+model_zoo.json lists all pretrained keras models that you can use.
+Run with the "-e KERAS_PRETRAINED_MODEL=Xception" flag to run docker 
+with the chosen model (eg:Xception). Default is MobileNetV2.
 
 # Run this :
 
@@ -24,12 +26,19 @@ docker build -t keras_pretrained_api .
 
 ## *Run image :*
 
-### *remove -d to keep CLI attached*
-
 docker run -d -p 80:80 generic_api
 
-### *Dev mode : run with live reload | -v $(pwd) to use local folder as volume*
+docker run -d -e "KERAS_PRETRAINED_MODEL=Xception" -p 80:80 generic_api 
+
+(*remove -d to keep CLI attached*)
+
+
+### *Dev mode :*
 
 docker run -d -p 80:80 -v $(pwd) keras_pretrained_api /start-reload.sh
+ 
+docker run -d  -e "KERAS_PRETRAINED_MODEL=Xception" -p 80:80 -v $(pwd) keras_pretrained_api /start-reload.sh 
 
-docker run -p 80:80 -v $(pwd) keras_pretrained_api /start-reload.sh
+docker run -e "KERAS_PRETRAINED_MODEL=Xception" -p 80:80 -v $(pwd) keras_pretrained_api /start-reload.sh 
+
+(*-v $(pwd) to use local folder as volume*)
