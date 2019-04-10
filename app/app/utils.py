@@ -61,7 +61,7 @@ class ImagePretrainedModel:
         x = self.preprocess_input_func(x)  # Subtracting avg values for each pixel
 
         with self.graph.as_default():
-            feature = self.model.predict(x)  # (1, 4096) -> (4096, )
+            feature = self.model.predict(x)
             if normalize:
                 result = feature / np.linalg.norm(feature) # Normalize
             else:
@@ -80,9 +80,9 @@ class ImagePretrainedModel:
         x = self.preprocess_input_func(x)  # Subtracting avg values for each pixel
 
         with self.graph.as_default():
-            feature = self.model.predict(x)  # (1, 4096) -> (4096, )
+            feature = self.model.predict(x)
             if normalize:
-                result = feature / np.linalg.norm(feature)  # Normalize
+                result = feature / np.linalg.norm(feature.T, axis=0, keepdims=True).T  # Normalize
             else:
                 result = feature
             return result.tolist()

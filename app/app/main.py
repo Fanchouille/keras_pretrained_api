@@ -21,18 +21,21 @@ with open("model/model_zoo.json", 'rb') as json_file:
 MODEL_TYPE = os.getenv("KERAS_PRETRAINED_MODEL", "MobileNetV2")
 MODEL_INSTANCE = ImagePretrainedModel(MODEL_ZOO, MODEL_TYPE)
 
+
 # Routes
 @app.post("/get-embedding/", response_model=Embedding)
-async def get_embedding(file: UploadFile = File(...)):
-    # TODO ADD normalize
-    emb = MODEL_INSTANCE.get_embbeding_from_bytes_cv2(file)
+async def get_embedding(file: UploadFile = File(...), normalize: bool = None):
+    if normalize is None:
+        normalize = True
+    emb = MODEL_INSTANCE.get_embbeding_from_bytes_cv2(file, normalize)
     return {"filename": file.filename, "embedding": emb}
 
 @app.post("/get-embedding-from-list/", response_model=EmbeddingList)
-async def get_embedding_from_list(request: Request):
-    # TODO ADD normalize
+async def get_embedding_from_list(request: Request, normalize: bool = None):
+    if normalize is None:
+        normalize = True
     form = await request.form()
     myfilelist = form.getlist("files")
-    embs = MODEL_INSTANCE.get_embbeding_from_bytes_list_cv2(myfilelist)
+    embs = MODEL_INSTANCE.get_embbeding_from_bytes_list_cv2(myfilelist, normalize)
     reslist = [{"filename": file.filename, "embedding": embs[i]} for i, file in enumerate(myfilelist)]
     return {"embedding_list": reslist}
