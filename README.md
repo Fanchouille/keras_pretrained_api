@@ -33,7 +33,7 @@ docker run -d -p 80:80 keras_pretrained_api
 
 docker run -d -e "KERAS_PRETRAINED_MODEL=Xception" -p 80:80 keras_pretrained_api 
 
-docker run -p 80:80 keras_pretrained_api
+docker run -p 80:80 keras_pretrained_api``
 
 (*remove -d to keep CLI attached*)
 

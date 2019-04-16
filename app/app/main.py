@@ -4,7 +4,7 @@ import json
 import os
 from pydantic import BaseModel
 from typing import List
-from starlette.requests import Request
+from starlette.responses import HTMLResponse
 
 app = FastAPI()
 
@@ -31,11 +31,25 @@ async def get_embedding(file: UploadFile = File(...), normalize: bool = None):
     return {"filename": file.filename, "embedding": emb}
 
 @app.post("/get-embedding-from-list/", response_model=EmbeddingList)
-async def get_embedding_from_list(request: Request, normalize: bool = None):
+async def get_embedding_from_list(files: List[UploadFile] = File(...), normalize: bool = None):
     if normalize is None:
         normalize = True
-    form = await request.form()
-    myfilelist = form.getlist("files")
-    embs = MODEL_INSTANCE.get_embbeding_from_bytes_list_cv2(myfilelist, normalize)
-    reslist = [{"filename": file.filename, "embedding": embs[i]} for i, file in enumerate(myfilelist)]
+    embs = MODEL_INSTANCE.get_embbeding_from_bytes_list_cv2(files, normalize)
+    reslist = [{"filename": file.filename, "embedding": embs[i]} for i, file in enumerate(files)]
     return {"embedding_list": reslist}
+
+@app.post("/uploadfiles/")
+async def create_upload_files(files: List[UploadFile] = File(...)):
+    return {"filenames": [file.filename for file in files]}
+
+@app.get("/")
+async def main():
+    content = """
+<body>
+<form action="/uploadfiles/" enctype="multipart/form-data" method="post">
+<input name="files" type="file" multiple>
+<input type="submit">
+</form>
+</body>
+    """
+    return HTMLResponse(content=content)
